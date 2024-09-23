@@ -6,5 +6,4 @@
       "Authorization": "Bearer token"
   },
   "body": {\"name\":\"Updated Name\"}
-  }
 }
