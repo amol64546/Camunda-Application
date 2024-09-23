@@ -1,0 +1,7 @@
+{
+  "apiUrl": "https://api.example.com/delete/123",
+  "method": "DELETE",
+  "headers": {
+    "Authorization": "Bearer token"
+  }
+}
