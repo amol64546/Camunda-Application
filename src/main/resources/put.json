@@ -5,5 +5,5 @@
       "Content-Type": "application/json",
       "Authorization": "Bearer token"
   },
-  "body": {\"name\":\"Updated Name\"}
+  "body": {"name":"Updated Name"}
 }
