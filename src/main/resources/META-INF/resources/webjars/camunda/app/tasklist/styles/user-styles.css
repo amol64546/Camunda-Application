@@ -1,0 +1,97 @@
+body {
+	font-family: 'Roboto', sans-serif !important;
+}
+
+[cam-widget-header]{
+	border-top: 3px solid #0077D0;
+}
+
+[cam-widget-header] .brand-logo:before {
+	display: none;
+}
+
+.app-banner svg {
+	display: none;
+}
+
+.navbar-brand {
+	/* hides the "Camunda Tasklist" text */
+	text-indent: -999em;
+	/* put your logo */
+	background-repeat: no-repeat;
+	background-image:  url(../../assets/images/mobius.png);
+	/* sets the width to match the logo's width */
+	width: 100px;
+	background-size: 60px;
+	background-position: center;
+}
+
+.Header {
+	border-top-color: #0077D0 !important;
+}
+
+[cam-widget-header] .brand-logo:before {
+	display: none;
+}
+
+[cam-widget-header] .navbar-brand .brand-logo span{
+	display: none;
+}
+
+[cam-widget-footer] {
+	color: white;
+	background-color: #0077D0;
+}
+
+[cam-widget-footer] a {
+	color: white;
+}
+[cam-widget-footer] a:hover, [cam-widget-footer] a:focus {
+	color: black;
+}
+
+a, [cam-widget-inline-field]>.view-value, [cam-tasklist-task-meta] .groups, .batch-operation-page .page-flow-nav li.active a:after {
+	color: #070202;
+}
+a:hover, a:focus {
+	color: #5482a3;
+}
+.nav-tabs>li.active>a,.columns,.three-cols-layout .column-left .list-unstyled>.item.active, .three-cols-layout .column-center .list-unstyled>li.active, .three-cols-layout .column-left .list-unstyled>.item:hover, .three-cols-layout .column-center .list-unstyled>li:hover, .three-cols-layout .column-left .list-unstyled>.item:focus, .three-cols-layout .column-center .list-unstyled>li:focus {
+	color: #0077D0;
+}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+	border-bottom: 3px solid #0077D0;
+}
+[cam-widget-header] .navbar-brand {
+	display: flex;
+}
+
+.sections-menu {
+	margin-left: 20px;
+}
+[cam-widget-header] {
+	border-top-color: #e0e0e0;
+}
+span.brand-name.ng-binding {
+	width: 200px;
+	display: block;
+}
+.column .cell.top {
+	border-bottom: 1px solid #e0e0e0;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+	border-bottom: #e0e0e0;
+}
+.btn-primary {
+	background-color: #e0e0e0;
+	border-color: #e0e0e0;
+}
+.btn-primary:hover,.btn-primary:focus,.btn-primary.focus {
+	color: #5482a3;
+	background-color: #ededed;
+	border-color: #ededed;
+}
+
+
+
+
