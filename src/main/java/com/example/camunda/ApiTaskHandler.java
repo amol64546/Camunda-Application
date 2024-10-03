@@ -17,6 +17,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 
 @Service
@@ -29,12 +30,21 @@ public class ApiTaskHandler implements JavaDelegate, ExternalTaskHandler {
   public void execute(DelegateExecution execution) throws Exception {
     log.info("------------- start of JavaDelegate -----------------");
     try {
-      // Retrieve the process variables
-      String url = (String) execution.getVariable("url"); // URL of the API
-      String method = (String) execution.getVariable("method"); // HTTP method (GET, POST, PUT, DELETE)
-      Map<String, String> headersMap = (Map<String, String>) execution.getVariable("headers"); // Headers map
-      Map<String, String> paramsMap = (Map<String, String>) execution.getVariable("params"); // Query parameters
-      Object requestBody = execution.getVariable("body"); // Body for POST, PUT
+
+      String url = Optional.ofNullable((String) execution.getVariable("url"))
+        .orElseThrow(() -> new IllegalArgumentException("URL cannot be null or empty"));
+
+      String method = Optional.ofNullable((String) execution.getVariable("method"))
+        .orElseThrow(() -> new IllegalArgumentException("HTTP method cannot be null or empty"));
+
+      Map<String, String> headersMap = Optional.ofNullable((Map<String, String>) execution.getVariable("headers"))
+        .orElse(new HashMap<>());
+
+      Map<String, String> paramsMap = Optional.ofNullable((Map<String, String>) execution.getVariable("params"))
+        .orElse(new HashMap<>());
+
+      Object requestBody = Optional.ofNullable(execution.getVariable("body"))
+        .orElse(null);
 
       ResponseEntity<Object> response = apiOperation(url, method, headersMap, paramsMap, requestBody);
 
@@ -52,11 +62,20 @@ public class ApiTaskHandler implements JavaDelegate, ExternalTaskHandler {
   public void execute(ExternalTask externalTask, ExternalTaskService externalTaskService) {
     log.info("------------- start of ExternalTaskHandler -----------------");
     try {
-      // Retrieve the process variables
-      String url = externalTask.getVariable("url");
-      String method = externalTask.getVariable("method");
-      Map<String, String> headersMap = externalTask.getVariable("headers");
-      Map<String, String> paramsMap = externalTask.getVariable("params");
+//      String url = externalTask.getVariable("url");
+//      String method = externalTask.getVariable("method");
+//      Map<String, String> headersMap = externalTask.getVariable("headers");
+//      Map<String, String> paramsMap = externalTask.getVariable("params");
+//      Object requestBody = externalTask.getVariable("body");
+
+      String url = (String) Optional.ofNullable(externalTask.getVariable("url"))
+        .orElseThrow(() -> new IllegalArgumentException("URL cannot be null or empty"));
+      String method = (String) Optional.ofNullable(externalTask.getVariable("method"))
+        .orElseThrow(() -> new IllegalArgumentException("HTTP method cannot be null or empty"));
+      Map<String, String> headersMap = (Map<String, String>) Optional.ofNullable(externalTask.getVariable("headers"))
+        .orElse(new HashMap<>());
+      Map<String, String> paramsMap = (Map<String, String>) Optional.ofNullable(externalTask.getVariable("params"))
+        .orElse(new HashMap<>());
       Object requestBody = externalTask.getVariable("body");
 
       ResponseEntity<Object> response = apiOperation(url, method, headersMap, paramsMap, requestBody);

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0yoghrf" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.27.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.21.0">
+  <bpmn:process id="Process_0d04rh4" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_0jgt9e5</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="Event_0ifnygx">
+      <bpmn:incoming>Flow_0b0tx09</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:scriptTask id="Activity_19d1ff7" name="js" scriptFormat="JavaScript">
+      <bpmn:incoming>Flow_0jgt9e5</bpmn:incoming>
+      <bpmn:outgoing>Flow_0o4if24</bpmn:outgoing>
+      <bpmn:script>
+execution.setVariable("url", "https://ig.mobiusdtaas.ai/monet-service/v1.0/widgets");
+execution.setVariable("method", "GET");
+
+var headers = {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI3Ny1NUVdFRTNHZE5adGlsWU5IYmpsa2dVSkpaWUJWVmN1UmFZdHl5ejFjIn0.eyJleHAiOjE3MjQ3MDg5OTUsImlhdCI6MTcyNDY3Mjk5NSwianRpIjoiZGQzZThjMDgtMDY4Zi00NjhiLWFlZmEtM2ExNzM3ZWE1ODk5IiwiaXNzIjoiaHR0cDovL2tleWNsb2FrLmtleWNsb2FrLnN2Yy5jbHVzdGVyLmxvY2FsOjgwODAvcmVhbG1zL21hc3RlciIsImF1ZCI6WyJCT0xUWk1BTk5fQk9UIiwiUEFTQ0FMX0lOVEVMTElHRU5DRSIsIk1PTkVUIiwiYWNjb3VudCIsIlZJTkNJIl0sInN1YiI6ImMwYTFmZmYyLTllMWUtNDU5MS1iNzQ5LTA5MzVjZGNmNjY1OSIsInR5cCI6IkJlYXJlciIsImF6cCI6IkhPTEFDUkFDWSIsInNlc3Npb25fc3RhdGUiOiI4M2QzODNhYS0yYzQ3LTQ5ZWItYTE0OS1jMGFiOGZkZWY3ZDgiLCJuYW1lIjoiUUFUZXN0IFFBVGVzdCIsImdpdmVuX25hbWUiOiJRQVRlc3QiLCJmYW1pbHlfbmFtZSI6IlFBVGVzdCIsInByZWZlcnJlZF91c2VybmFtZSI6InBhc3N3b3JkX3RlbmFudF9xYXRlc3RAZ2F0ZXN0YXV0b21hdGlvbi5jb20iLCJlbWFpbCI6InBhc3N3b3JkX3RlbmFudF9xYXRlc3RAZ2F0ZXN0YXV0b21hdGlvbi5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYWNyIjoiMSIsImFsbG93ZWQtb3JpZ2lucyI6WyIvKiJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZGVmYXVsdC1yb2xlcy1tYXN0ZXIiLCJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiQk9MVFpNQU5OX0JPVCI6eyJyb2xlcyI6WyJCT0xUWk1BTk5fQk9UX1VTRVIiXX0sIlBBU0NBTF9JTlRFTExJR0VOQ0UiOnsicm9sZXMiOlsiUEFTQ0FMX0lOVEVMTElHRU5DRV9VU0VSIl19LCJNT05FVCI6eyJyb2xlcyI6WyJNT05FVF9VU0VSIl19LCJIT0xBQ1JBQ1kiOnsicm9sZXMiOlsiTVBfT1BFUkFUT1IiLCJIT0xBQ1JBQ1lfVVNFUiJdfSwiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19LCJWSU5DSSI6eyJyb2xlcyI6WyJWSU5DSV9VU0VSIl19fSwic2NvcGUiOiJwcm9maWxlIGVtYWlsIiwic2lkIjoiODNkMzgzYWEtMmM0Ny00OWViLWExNDktYzBhYjhmZGVmN2Q4IiwidGVuYW50SWQiOiJjMGExZmZmMi05ZTFlLTQ1OTEtYjc0OS0wOTM1Y2RjZjY2NTkiLCJyZXF1ZXN0ZXJUeXBlIjoiVEVOQU5UIn0=.KH3r1B52N5LFnJUBGM19zxFBFrD11Ab1vH0zYdTY4y_URRNTri4Qp2Wnlq4P2rkm-uokcgIw8IyAcmfXAZnqmq5ZoFxmTQ9jzsRrEImO1RtCLXSz4hBrCPIvCn24gMi_48JbfSLFnq_YeUUDuv3JLY_kfX5aHo0pt40dac9wZp7uvxf5vD0141bf8RXUFPl-s58yAJ32D3tZPslOYADiH3o0ycozL02wac54IMELTjxTzj8e9lHtoamlsaT193WpQ_4BFGURNRsTaiv6GLN7rr4JYXWu5hPF7S4EH8qNJxcpkrVhXFVtrZqjq1NJDkD7Z5AqHoaublhvBuA7l90Gpw"
+};
+execution.setVariable("headers", headers);
+
+var params = {
+    "status": "draft",
+    "cloneId": cloneId,
+    "ownedOnly": "true"
+};
+execution.setVariable("params", params);
+</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:sequenceFlow id="Flow_0jgt9e5" sourceRef="StartEvent_1" targetRef="Activity_19d1ff7" />
+    <bpmn:sequenceFlow id="Flow_0o4if24" sourceRef="Activity_19d1ff7" targetRef="Activity_0bc5hvu" />
+    <bpmn:serviceTask id="Activity_0bc5hvu" name="get" camunda:class="com.example.camunda.ApiTaskHandler">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="Input_2t46mdl">${cloneId}</camunda:inputParameter>
+          <camunda:outputParameter name="Output_3mn8di5">${cloneId}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0o4if24</bpmn:incoming>
+      <bpmn:outgoing>Flow_0b0tx09</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0b0tx09" sourceRef="Activity_0bc5hvu" targetRef="Event_0ifnygx" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_0d04rh4">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0ifnygx_di" bpmnElement="Event_0ifnygx">
+        <dc:Bounds x="642" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0lztgfr_di" bpmnElement="Activity_19d1ff7">
+        <dc:Bounds x="310" y="77" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1k1wa9c_di" bpmnElement="Activity_0bc5hvu">
+        <dc:Bounds x="490" y="80" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0jgt9e5_di" bpmnElement="Flow_0jgt9e5">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="310" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0b0tx09_di" bpmnElement="Flow_0b0tx09">
+        <di:waypoint x="590" y="120" />
+        <di:waypoint x="616" y="120" />
+        <di:waypoint x="616" y="117" />
+        <di:waypoint x="642" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0o4if24_di" bpmnElement="Flow_0o4if24">
+        <di:waypoint x="410" y="117" />
+        <di:waypoint x="450" y="117" />
+        <di:waypoint x="450" y="120" />
+        <di:waypoint x="490" y="120" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

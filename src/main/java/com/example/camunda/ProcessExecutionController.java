@@ -1,11 +1,13 @@
 package com.example.camunda;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.camunda.bpm.engine.HistoryService;
 import org.camunda.bpm.engine.RepositoryService;
 import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.history.HistoricVariableInstance;
 import org.camunda.bpm.engine.repository.Deployment;
+import org.camunda.bpm.engine.repository.ProcessDefinition;
 import org.camunda.bpm.engine.runtime.ProcessInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,16 +24,14 @@ import java.util.Map;
 @RestController
 @RequestMapping("/process")
 @Slf4j
+@RequiredArgsConstructor
 public class ProcessExecutionController {
 
-  @Autowired
-  private RuntimeService runtimeService;
+  private final RuntimeService runtimeService;
 
-  @Autowired
-  private RepositoryService repositoryService;
+  private final RepositoryService repositoryService;
 
-  @Autowired
-  private HistoryService historyService;
+  private final HistoryService historyService;
 
 
 
@@ -40,7 +40,12 @@ public class ProcessExecutionController {
     Deployment deployment = repositoryService.createDeployment()
       .addString("dynamic-process.bpmn", bpmnXml)
       .deploy();
-    return ResponseEntity.ok("Process deployed with ID: " + deployment.getId());
+
+    ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery()
+      .deploymentId(deployment.getId())
+      .singleResult();
+
+    return ResponseEntity.ok("Process Definition ID: " + processDefinition.getId());
   }
 
   @PostMapping("/start/{processDefinitionId}")
@@ -48,17 +53,14 @@ public class ProcessExecutionController {
                                           @RequestBody Map<String, Object> variables) {
     log.info("------------ /start/{}", processDefinitionId);
     ProcessInstance processInstance = runtimeService.startProcessInstanceById(processDefinitionId, variables);
-    // Return the response to the user
     return ResponseEntity.ok(getHistoricVariables(processInstance.getId()));
   }
 
   public Map<String, Object> getHistoricVariables(String processInstanceId) {
-    // Fetch all historic variables for the given process instance
     List<HistoricVariableInstance> variables = historyService.createHistoricVariableInstanceQuery()
       .processInstanceId(processInstanceId)
       .list();
 
-    // Convert the list of variables into a map for easier access
     Map<String, Object> variableMap = new HashMap<>();
     for (HistoricVariableInstance variable : variables) {
       variableMap.put(variable.getName(), variable.getValue());
