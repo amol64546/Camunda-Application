@@ -9,7 +9,7 @@
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_19lqi3k" sourceRef="StartEvent_1" targetRef="Activity_15zk3rk" />
     <bpmn:sequenceFlow id="Flow_14azipk" sourceRef="Activity_15zk3rk" targetRef="Event_1wfkf73" />
-    <bpmn:serviceTask id="Activity_15zk3rk" name="even" camunda:type="external" camunda:topic="apiTaskTopic">
+    <bpmn:serviceTask id="Activity_15zk3rk" name="even" camunda:asyncBefore="true" camunda:asyncAfter="true" camunda:type="external" camunda:topic="apiTaskTopic">
       <bpmn:extensionElements />
       <bpmn:incoming>Flow_19lqi3k</bpmn:incoming>
       <bpmn:outgoing>Flow_14azipk</bpmn:outgoing>
