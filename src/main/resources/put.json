@@ -6,7 +6,6 @@
       "Authorization": "Bearer token"
   },
   "body": {
-    "value": "{\"name\":\"Updated Name\"}",
-    "type": "String"
+    "value": "{\"name\":\"Updated Name\"}"
   }
 }

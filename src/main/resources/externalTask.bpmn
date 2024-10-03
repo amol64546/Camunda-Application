@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0kd3ar9" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.27.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.21.0">
+  <bpmn:process id="externalTaskProcess" isExecutable="true" camunda:historyTimeToLive="P30D">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_19lqi3k</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="Event_1wfkf73">
+      <bpmn:incoming>Flow_14azipk</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_19lqi3k" sourceRef="StartEvent_1" targetRef="Activity_15zk3rk" />
+    <bpmn:sequenceFlow id="Flow_14azipk" sourceRef="Activity_15zk3rk" targetRef="Event_1wfkf73" />
+    <bpmn:serviceTask id="Activity_15zk3rk" name="even" camunda:type="external" camunda:topic="apiTaskTopic">
+      <bpmn:extensionElements />
+      <bpmn:incoming>Flow_19lqi3k</bpmn:incoming>
+      <bpmn:outgoing>Flow_14azipk</bpmn:outgoing>
+    </bpmn:serviceTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1takf5y">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1wfkf73_di" bpmnElement="Event_1wfkf73">
+        <dc:Bounds x="712" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1r8vy0v_di" bpmnElement="Activity_15zk3rk">
+        <dc:Bounds x="340" y="77" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_19lqi3k_di" bpmnElement="Flow_19lqi3k">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="340" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_14azipk_di" bpmnElement="Flow_14azipk">
+        <di:waypoint x="440" y="117" />
+        <di:waypoint x="712" y="117" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
